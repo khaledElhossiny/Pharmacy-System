@@ -10,7 +10,7 @@ if (!empty($_SESSION['ID']) || isset($_GET['ID'])){
     }
 }
 else{
-    header("Location:Login.html");
+    header("Location:Login.php");
     exit;
 }
 

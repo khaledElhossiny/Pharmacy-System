@@ -10,7 +10,15 @@ class UserModel{
     private $Usertype_ID;
     private $DOB;
     private $Address;
-
+    private $Gender;
+    public function getGender()
+    {
+        return $this->Gender;
+    }
+    public function setGender($Gender)
+    {
+        $this->Gender = $Gender;
+    }
     public function getID()
     {
         return $this->ID;
@@ -86,8 +94,8 @@ class UserModel{
 
     public function Insert(){
         $this->Password = sha1($this->Password);
-        $sql = "INSERT INTO `user`(`Firstname`, `Lastname`, `Email`, `Username`, `Password`, `Usertype_ID`, `DOB`, `Address`) VALUES
-                  ('".$this->Firstname."','".$this->Lastname."','".$this->Email."','".$this->Username."','".$this->Password."','".$this->Usertype_ID."','".$this->DOB."','".$this->Address."')";
+        $sql = "INSERT INTO `user`(`Firstname`, `Lastname`, `Email`, `Username`, `Password`, `Usertype_ID`, `DOB`, `Address`, Gender) VALUES
+                  ('".$this->Firstname."','".$this->Lastname."','".$this->Email."','".$this->Username."','".$this->Password."','".$this->Usertype_ID."','".$this->DOB."','".$this->Address."','".$this->Gender."')";
         $Connection = new DatabaseConnection();
         $Connection->Connect();
         $Connection->Execute($sql);
@@ -152,7 +160,6 @@ class UserModel{
         }
 
     }
-
     public function Select(){
         $sql = "SELECT * FROM user";
         $Connection = new DatabaseConnection();
@@ -179,14 +186,12 @@ class UserModel{
             return NULL;
         }
     }
-
     public function Delete(){
         $sql = "DELETE FROM `user` WHERE ID = '".$this->ID."'";
         $Connection = new DatabaseConnection();
         $Connection->Connect();
         $Connection->Execute($sql);
     }
-
     public function Modify(){
         $sql = "UPDATE `user` SET `Firstname` = '".$this->Firstname."',`Lastname`='".$this->Lastname."',`Address`='".$this->Address."' WHERE ID = '".$this->ID."'";
         $Connection = new DatabaseConnection();
@@ -194,7 +199,6 @@ class UserModel{
         $Connection->Execute($sql);
 
     }
-
     public function SelectUserData(){
         $sql = "SELECT * FROM user WHERE ID = '".$this->ID."'";
         $Connection = new DatabaseConnection();
@@ -206,7 +210,63 @@ class UserModel{
         $data->setFirstname($Row['Firstname']);
         $data->setLastname($Row['Lastname']);
         $data->setAddress($Row['Address']);
+        $data->setEmail($Row['Email']);
+        $data->setGender($Row['Gender']);
+        $data->setUsername($Row['Username']);
+        $data->setDOB($Row['DOB']);
         return $data;
+    }
+    public function checkAdminStatus(){
+        $sql = "SELECT ID FROM usertype WHERE Type = 'Admin'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Result = $Connection->Execute($sql);
+        $row = mysqli_fetch_array($Result);
+        $AdminID = $row['ID'];
+        $sql = "SELECT * FROM user WHERE ID = '".$this->ID."' AND Usertype_ID = '".$AdminID."'";
+        $Result = $Connection->Execute($sql);
+        if ($Result->num_rows>0){
+            return 1;
+        }
+        else{
+            return NULL;
+        }
+    }
+    public function ModifyAdmin(){
+        $sql = "UPDATE `user` SET `Firstname` = '".$this->Firstname."',`Lastname`='".$this->Lastname."',`Address`='".$this->Address."' , Usertype_ID = '".$this->Usertype_ID."' WHERE ID = '".$this->ID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Connection->Execute($sql);
+    }
+
+    public function SelectEmail(){
+        $sql = "SELECT Email FROM user WHERE ID = ".$this->ID;
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Result = $Connection->Execute($sql);
+        $row = mysqli_fetch_array($Result);
+        return $row['Email'];
+    }
+    public function ChangeMail(){
+        $sql = "UPDATE `user` SET `Email`='".$this->Email."' WHERE ID ='".$this->ID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Connection->Execute($sql);
+    }
+    public function SelectUsername(){
+        $sql = "SELECT Username FROM user WHERE ID = '".$this->ID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Result = $Connection->Execute($sql);
+        $row = mysqli_fetch_array($Result);
+        return $row['Username'];
+    }
+    public function ModifyPassword(){
+        $this->Password = sha1($this->Password);
+        $sql = "UPDATE user SET Password = '".$this->Password."' WHERE ID = '".$this->ID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Connection->Execute($sql);
     }
 
 }

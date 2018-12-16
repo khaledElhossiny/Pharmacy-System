@@ -1,6 +1,26 @@
 <?php
 require_once ("../Model/UserModel.php");
 require_once ("../Controller/UserController.php");
+if (!empty($_SESSION['ID'])){
+    $UserController = new UserController();
+    $Result = $UserController->checkAdminStatus($_SESSION['ID']);
+    if ($Result == 1){
+
+    }
+    elseif ($Result == NULL){
+        header("Location:AccessDenied.php");
+        exit;
+    }
+    else{
+        header("Location:Error.php");
+        exit;
+    }
+}
+else{
+    header("Location:Login.php");
+    exit;
+}
+
 $UserController = new UserController();
 $UserArray = $UserController->SelectUsers();
 ?>
@@ -34,9 +54,29 @@ $UserArray = $UserController->SelectUsers();
             }
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="../Public/CSS/Menu.css"></head>
 
 </head>
 <body>
+<div class="navbar">
+    <nav>
+        <ul>
+            <li><a href="UserHomePage.php">Home Page</a></li>
+            <?php
+            if (!empty($_SESSION['ID'])){
+                echo "  <li><a href='ViewProfile.php'>Hello ".$_SESSION['ID']."</a> 
+                        <a href='../Controller/UserController.php?request=logout'>(Logout)</a></li>";
+            }
+            else{
+                echo "<li><a href='Login.php'>Login</a><a href='Register.php'>Register</a> </li>";
+            }
+
+
+            ?>
+        </ul>
+    </nav>
+</div>
+<br><br><br><br><br>
 <h1>User Panel</h1>
     <table>
         <tr>
@@ -56,7 +96,7 @@ $UserArray = $UserController->SelectUsers();
             <td>".$UserArray[$x]->getEmail()."</td>
             <td>".$UserArray[$x]->getAddress()."</td>
             <td><a href='../Controller/UserController.php?action=Delete&ID=".$UserArray[$x]->getID()."' onclick='Confirmation()'><img src='../Public/Pictures/Delete.png'height='20' width='20'></a> 
-            <a href='ModifyUser.php?ID=".$UserArray[$x]->getID()."' ><img src='../Public/Pictures/Modify.png'height='20' width='20'></a></td>
+            <a href='ModifyMenu.php?ID=".$UserArray[$x]->getID()."' ><img src='../Public/Pictures/Modify.png'height='20' width='20'></a></td>
             </tr>";
         }
 
