@@ -62,14 +62,16 @@
 </div>
 <br>
 <div style="text-align: center;">
-    <h4>Login</h4>
+    <fieldset>
     <form action = "../Controller/UserController.php" method="post">
-        Username / Email <input type="text" name = "username" id = "username" placeholder="Username or Email" required><h5 id = "Message" style="display: inline; visibility: hidden;color: red;">Sorry this user doesn't exist</h5>
+        <label for="username">Username / Email</label>
+        <input type="text" name = "username" id = "username" placeholder="Username or Email" required><h5 id = "Message" style="display: inline; visibility: hidden;color: red;">Sorry this user doesn't exist</h5>
         <div id = "PasswordDIV" style="visibility: hidden;">
-            Password <input type="password" name = "password" id = "password" placeholder="*****" required><br>
-            <input type="submit" name = "Login" id = "Login" value="Login">
+          <br>  <label for="password">Password</label> <input type="password" name = "password" id = "password" placeholder="*****" required><br>
+          <br>  <input type="submit" name = "Login" id = "Login" value="Login">
         </div>
     </form>
+    </fieldset>
 </div>
 </body>
 </html>

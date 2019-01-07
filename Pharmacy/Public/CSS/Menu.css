@@ -1,16 +1,15 @@
 body {margin:0;}
 .navbar {
     overflow: hidden;
-    background-color: #333;
-    position: fixed;
     top: 0;
     width: 100%;
+    background-color: rgba(135,206,235,0.4);
 }
 
 .navbar a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: cornflowerblue;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -18,15 +17,86 @@ body {margin:0;}
 }
 
 .navbar a:hover {
-    background: #ddd;
-    color: black;
+    background: rgba(100,149,237,0.4);
+    color: white;
 }
 
 .main {
     padding: 16px;
     margin-top: 30px;
-    height: 1500px; /* Used in this example to enable scrolling */
+    height: 1500px;
 }
 ul {
     list-style-type: none;
+}
+html{
+    background-image: url("../Pictures/Background.jpg");
+    background-size: 100%;
+}
+label{
+    color: white;
+    font-family: "Bradley Hand ITC";
+    font-size: x-large;
+    display: inline-block;
+}
+input{
+    width: 250px;
+    height: 30px;
+    color: white;
+    font-family: "Bradley Hand ITC";
+    font-size: medium;
+    background-color:rgba(135,206,235,0.3);
+    border-width: 3px;
+    border-color: rgba(135,206,235,0.2);
+    display: inline-block;
+}
+::placeholder{
+    color: white;
+    font-family: "Bradley Hand ITC";
+
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+    font-family: "Bradley Hand ITC";
+
+}
+fieldset{
+    display: inline-block;
+    border-style: hidden;
+    background-color: rgba(135,206,235,0.3);
+    color: white;
+}
+input[type=submit]{
+    height: 50px;
+}
+button{
+    height: 50px;
+    width: 250px;
+    height: 30px;
+    color: white;
+    font-family: "Bradley Hand ITC";
+    font-size: medium;
+    background-color:rgba(135,206,235,0.3);
+    border-width: 3px;
+    border-color: rgba(135,206,235,0.2);
+    display: inline-block;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border-width: 3px;
+    border-color: rgba(135,206,235,0.2);
+    text-align: left;
+    padding: 8px;
+    color: white;
+
+}
+
+tr:nth-child(even) {
+    background-color: rgba(135,206,235,0.3);
 }
