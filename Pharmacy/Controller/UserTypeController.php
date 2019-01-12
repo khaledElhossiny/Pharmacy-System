@@ -6,5 +6,7 @@ class UserTypeController{
         $Result = $UserTypeModel->Select();
         return $Result;
     }
+
+
 }
 ?>

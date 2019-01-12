@@ -1,3 +1,6 @@
+<?php
+require_once ("NavBar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,36 +42,22 @@
 
 </head>
 <body>
-<div class="navbar">
-    <nav>
-        <ul>
-            <li><a href="UserHomePage.php">Home Page</a></li>
-            <?php
-            session_start();
-            if (!empty($_SESSION['ID'])){
-                echo "  <li><a href='ViewProfile.php'>Hello ".$_SESSION['ID']."</a>
-            <a href='../Controller/UserController.php?request=logout'>(Logout)</a></li>";
-            }
-            else{
-            echo "<li><a href='Login.html'>Login</a><a href='Register.php'>Register</a> </li>";
-            }
-
-
-            ?>
-        </ul>
-    </nav>
-</div>
 <br>
 <div style="text-align: center;">
-    <h4>Login</h4>
-    <h4 style="color: red;">An Error has occured Please try again later and check your Data</h4>
-    <form action = "../Controller/UserController.php" method="post">
-        Username / Email <input type="text" name = "username" id = "username" placeholder="Username or Email" required>
-        <div id = "PasswordDIV" style="visibility: hidden;">
-            Password <input type="password" name = "password" id = "password" placeholder="*****" required><br>
-            <input type="submit" name = "Login" id = "Login" value="Login">
+    <fieldset>
+        <div style="text-align: center">
+            <label><h4>Login</h4></label><br>
+            <label><h4 style="color: red;">An Error has occured Please try again later and check your Data</h4></label><br>
+            <form action = "../Controller/UserController.php" method="post">
+                <label for="username">Username / Email</label>  <input type="text" name = "username" id = "username" placeholder="Username or Email" required>
+                <div id = "PasswordDIV" style="visibility: hidden;">
+                    <label for="password">Password</label> <input type="password" name = "password" id = "password" placeholder="*****" required><br>
+                    <input type="submit" name = "Login" id = "Login" value="Login">
+                </div>
+            </form>
         </div>
-    </form>
+    </fieldset>
+
 </div>
 </body>
 </html>

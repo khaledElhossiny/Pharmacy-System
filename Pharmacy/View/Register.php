@@ -1,3 +1,6 @@
+<?php
+require_once ("NavBar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,29 +89,11 @@
     </script>
 </head>
 <body>
-<div class="navbar">
-    <nav>
-        <ul>
-            <li><a href="UserHomePage.php">Home Page</a></li>
-            <?php
-            if (!empty($_SESSION['ID'])){
-                echo "  <li><a href='ViewProfile.php'>Hello ".$_SESSION['ID']."</a>
-            <a href='../Controller/UserController.php?request=logout'>(Logout)</a></li>";
-            }
-            else{
-            echo "<li><a href='Login.php'>Login</a><a href='Register.php'>Register</a> </li>";
-            }
-
-
-            ?>
-        </ul>
-    </nav>
-</div>
 <br>
-<h4 style="text-align: center;">Register</h4>
 <div style="text-align: center;">
     <fieldset>
-    <form action="../Controller/UserController.php" method="post">
+        <label><h4 style="text-align: center;">Register</h4></label>
+        <form action="../Controller/UserController.php" method="post">
        <label for="firstname">First Name</label> <input type = "text" name = "firstname" id = "firstname" required placeholder="First Name"><br><br>
         <label for="lastname">Last Name</label> <input type="text" name="lastname" id="lastname" required placeholder="Last Name"><br><br>
         <label for="email">Email</label> <input type="email" name = "email" id = "email" required placeholder="something@Something.com"><h5 id = "Message2" style="display: inline;"></h5><br><br>

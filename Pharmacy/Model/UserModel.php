@@ -147,13 +147,16 @@ class UserModel{
     }
     public function Login(){
         $this->Password = sha1($this->Password);
-        $sql = "SELECT ID FROM user WHERE Username = '".$this->Username."' OR Email = '".$this->Email."' AND Password = '".$this->Password."'";
+        $sql = "SELECT ID , Usertype_ID FROM user WHERE Username = '".$this->Username."' OR Email = '".$this->Email."' AND Password = '".$this->Password."'";
         $Connection = new DatabaseConnection();
         $Connection->Connect();
         $Result = $Connection->Execute($sql);
         if ($Result->num_rows>0){
+            $Object = new self();
             $row = mysqli_fetch_array($Result);
-            return $row['ID'];
+            $Object->setID($row['ID']);
+            $Object->setUsertypeID($row['Usertype_ID']);
+            return $Object;
         }
         else{
             return null;
@@ -267,6 +270,15 @@ class UserModel{
         $Connection = new DatabaseConnection();
         $Connection->Connect();
         $Connection->Execute($sql);
+    }
+
+    public function GetUserType(){
+        $sql = "SELECT Usertype_ID FROM user WHERE ID = '".$this->ID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Result = $Connection->Execute($sql);
+        $row = mysqli_fetch_array($Result);
+        return $row['Usertype_ID'];
     }
 
 }

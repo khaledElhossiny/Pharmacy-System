@@ -1,3 +1,6 @@
+<?php
+require_once ("NavBar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,29 +44,11 @@
 
 </head>
 <body>
-<div class="navbar">
-    <nav>
-        <ul>
-            <li><a href="UserHomePage.php">Home Page</a></li>
-            <?php
-            session_start();
-            if (!empty($_SESSION['ID'])){
-                echo "  <li><a href='ViewProfile.php'>Hello ".$_SESSION['ID']."</a>
-            <a href='../Controller/UserController.php?request=logout'>(Logout)</a></li>";
-            }
-            else{
-            echo "<li><a href='Login.php'>Login</a><a href='Register.php'>Register</a> </li>";
-            }
-
-
-            ?>
-        </ul>
-    </nav>
-</div>
 <br>
 <div style="text-align: center;">
     <fieldset>
-    <form action = "../Controller/UserController.php" method="post">
+        <label><h4 style="text-align: center;">Login</h4></label>
+        <form action = "../Controller/UserController.php" method="post">
         <label for="username">Username / Email</label>
         <input type="text" name = "username" id = "username" placeholder="Username or Email" required><h5 id = "Message" style="display: inline; visibility: hidden;color: red;">Sorry this user doesn't exist</h5>
         <div id = "PasswordDIV" style="visibility: hidden;">

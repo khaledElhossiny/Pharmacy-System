@@ -1,6 +1,7 @@
 <?php
 require_once ("../Controller/UserController.php");
 require_once ("../Model/UserModel.php");
+require_once ("NavBar.php");
 if (!empty($_SESSION['ID']) || isset($_GET['ID'])){
     if (isset($_GET['ID'])){
         $ID = $_GET['ID'];
@@ -23,24 +24,6 @@ $Result = $UserController->SelectUserData($ID);
     <link rel="stylesheet" type="text/css" href="../Public/CSS/Menu.css"></head>
 
 </head>
-<div class="navbar">
-    <nav>
-        <ul>
-            <li><a href="UserHomePage.php">Home Page</a></li>
-            <?php
-            if (!empty($_SESSION['ID'])){
-                echo "  <li><a href='ViewProfile.php'>Hello ".$_SESSION['ID']."</a>
-            <a href='../Controller/UserController.php?request=logout'>(Logout)</a></li>";
-            }
-            else{
-                echo "<li><a href='Login.php'>Login</a><a href='Register.php'>Register</a> </li>";
-            }
-
-
-            ?>
-        </ul>
-    </nav>
-</div>
 <br>
 <body>
 <div style="text-align: center;">

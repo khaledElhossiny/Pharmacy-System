@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_id() == ''){
+    session_start();
+}
 require_once ("../Model/UserModel.php");
 if (isset($_POST['Register'])){
     UserController::Register();
@@ -136,7 +138,8 @@ class UserController{
         $UserModel->setPassword($Password);
         $Result = $UserModel->Login();
         if ($Result != null){
-            $_SESSION['ID'] = $Result;
+            $_SESSION['ID'] = $Result->getID();
+            $_SESSION['Usertype'] = $Result->getUsertypeID();
             header("Location:../View/UserHomePage.php");
             exit;
         }
@@ -279,6 +282,12 @@ class UserController{
         $UserModel->ModifyPassword();
         header("Location:../View/ViewProfile.php");
         exit;
+    }
+
+    public function getUsertype($ID){
+        $UserModel = new UserModel();
+        $UserModel->setID($ID);
+        return $UserModel->GetUserType();
     }
 }
 ?>

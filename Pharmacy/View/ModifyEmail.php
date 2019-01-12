@@ -1,5 +1,6 @@
 <?php
 require_once ("../Controller/UserController.php");
+require_once ("NavBar.php");
 $ID = $_GET['ID'];
 $UserController = new UserController();
 $Email = $UserController->SelectMail($ID);
@@ -57,12 +58,17 @@ $Email = $UserController->SelectMail($ID);
     </head>
     <body>
         <div style="text-align: center;">
-            The Old Mail Is : <?php echo $Email; ?>
-            <form action = "../Controller/UserController.php" method="post">
-                New Email: <input type="email" name="email" id = "email" required><h5 id = "Message2" style="display: inline;"></h5><br>
-                <input type="number" name="ID" id = "ID" style="visibility: hidden;" value="<?php echo $ID; ?>">
-                <input type = "submit" name = "ModifyMail" id = "ModifyMail" value="Change" onclick="check()">
-            </form>
+            <fieldset>
+                <div style="text-align: center">
+                    <label>The Old Mail Is : <?php echo $Email; ?></label><br>
+                    <form action = "../Controller/UserController.php" method="post">
+                        <label for="email">New Email:</label> <input type="email" name="email" id = "email" required><h5 id = "Message2" style="display: inline;"></h5><br>
+                        <input type="number" name="ID" id = "ID" style="visibility: hidden;" value="<?php echo $ID; ?>"><br>
+                        <input type = "submit" name = "ModifyMail" id = "ModifyMail" value="Change" onclick="check()">
+                    </form>
+                </div>
+            </fieldset>
+
         </div>
     </body>
 </html>

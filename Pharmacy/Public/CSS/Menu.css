@@ -3,13 +3,13 @@ body {margin:0;}
     overflow: hidden;
     top: 0;
     width: 100%;
-    background-color: rgba(135,206,235,0.4);
+    background-color: rgba(0,0,0,0.8);
 }
 
 .navbar a {
     float: left;
     display: block;
-    color: cornflowerblue;
+    color: antiquewhite;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -30,11 +30,11 @@ ul {
     list-style-type: none;
 }
 html{
-    background-image: url("../Pictures/Background.jpg");
-    background-size: 100%;
+    background-image: url("../Pictures/Background (2).jpg");
+    background-size: auto;
 }
 label{
-    color: white;
+    color: antiquewhite;
     font-family: "Bradley Hand ITC";
     font-size: x-large;
     display: inline-block;
@@ -42,41 +42,46 @@ label{
 input{
     width: 250px;
     height: 30px;
-    color: white;
+    color: antiquewhite;
     font-family: "Bradley Hand ITC";
     font-size: medium;
-    background-color:rgba(135,206,235,0.3);
+    background-color: rgba(0,0,0,0.8);
     border-width: 3px;
     border-color: rgba(135,206,235,0.2);
     display: inline-block;
 }
 ::placeholder{
-    color: white;
+    color: antiquewhite;
     font-family: "Bradley Hand ITC";
 
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-    color: white;
+    color: antiquewhite;
     font-family: "Bradley Hand ITC";
 
 }
 fieldset{
     display: inline-block;
     border-style: hidden;
-    background-color: rgba(135,206,235,0.3);
-    color: white;
+    background-color: rgba(0,0,0,0.8);
+    color: antiquewhite;
 }
 input[type=submit]{
     height: 50px;
+}
+input[type=radio]{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
 }
 button{
     height: 50px;
     width: 250px;
     height: 30px;
-    color: white;
+    color: antiquewhite;
     font-family: "Bradley Hand ITC";
     font-size: medium;
-    background-color:rgba(135,206,235,0.3);
+    background-color: rgba(0,0,0,0.8);
     border-width: 3px;
     border-color: rgba(135,206,235,0.2);
     display: inline-block;
@@ -90,13 +95,24 @@ table {
 
 td, th {
     border-width: 3px;
-    border-color: rgba(135,206,235,0.2);
+    background-color: rgba(0,0,0,0.8);
     text-align: left;
     padding: 8px;
-    color: white;
+    color: antiquewhite;
 
 }
 
 tr:nth-child(even) {
-    background-color: rgba(135,206,235,0.3);
+    background-color: rgba(0,0,0,0.8);
+}
+select, option{
+    width: 250px;
+    height: 30px;
+    color: antiquewhite;
+    font-family: "Bradley Hand ITC";
+    font-size: medium;
+    background-color: rgba(0,0,0,0.8);
+    border-width: 3px;
+    border-color: rgba(135,206,235,0.2);
+    display: inline-block;
 }
