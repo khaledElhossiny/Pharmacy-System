@@ -81,6 +81,11 @@ else if(isset($_POST['check']))
 		  $ModelObject->set_product_id($ID);
 		  return $ModelObject->Select_ID();
 	  }
+	  public function select_img_path()
+	{
+		$modelObject=new viewModel();
+		return $modelObject->select_img_path();
+	}
 	public function delete_search($name)  //display items to delete them
 	{
 		//echo $name;
