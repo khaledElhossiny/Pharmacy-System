@@ -1,7 +1,7 @@
 <?php
 			require_once("../Controller/viewController.php");
 			$viewControllerObject=new viewController();
-			$result=$viewControllerObject->view();
+			$result=$viewControllerObject->select_img_path();
 			while($row=mysqli_fetch_array($result))
 			{
 				$img[]=$row["Img_Path"];
