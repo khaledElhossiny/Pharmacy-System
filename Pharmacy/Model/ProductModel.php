@@ -142,5 +142,13 @@ class ProductModel
       $result=$DatabaseObject->execute($sql);
       return $result;
   }
+  public function select_img_path()
+  {
+	  $sql="select Img_Path from product";
+	  $DatabaseObject= new DBConnect();
+	  $DatabaseObject->connect();
+	  $result=$DatabaseObject->execute($sql);
+	  return $result;
+  }
 }
 ?>
