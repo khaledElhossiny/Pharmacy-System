@@ -1,0 +1,57 @@
+<html>
+<link rel="stylesheet" href="landing page.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+<div class="window_container">
+
+	<div class="home_bar">
+		<div class="hotline_div"> <img id="hotline_img" src="../Public/Pictures/hotline.png"></img> </div>
+		
+		<div class="dropdown_div">
+			<button class="dropdown_but"> Categories </button>
+			<div class="dropdown_content">
+				<a href="#">link1</a>
+				<a href="#">link2</a>
+				<a href="#">link3</a>
+			</div>
+		</div> 
+		
+		<div class="search_div">
+			<form  action="../Controller/ProductController.php" method="post">
+				<input type="textbox" name="product_search" id="search_box"  placeholder="Search" >
+			</form>
+		</div>
+		
+		<div id="bar_links_div">
+			<div> <a href="#" class="bar_links"><b>Home</b></a> </div>
+			<div> <a href="#" class="bar_links"><b>Login</b></a> </div>
+			<div> <a href="#" class="bar_links"><b>Register</b></a> </div>
+		</div>
+	</div>
+	
+	<div class="product_container">
+		<div class="prod" id="prod1">
+			<img src="4.png" id="medicine_img_1"></img>
+			<button class="add_to_cart_but" onClick="#"> <img src="../Public/Pictures/cart.png"></img> Add to cart</button> 
+		</div>
+		
+		<div class="prod" id="prod2">
+			<img src="1.jpg" id="medicine_img_2"></img> 
+			<button class="add_to_cart_but" onClick="#"> <img src="../Public/Pictures/cart.png"></img> Add to cart</button> 
+		</div>
+		
+		<div class="prod" id="prod3">
+			<img src="2.jpg" id="medicine_img_3"></img>
+			<button class="add_to_cart_but" onClick="#"> <img src="../Public/Pictures/cart.png"></img> Add to cart</button> 
+		</div>
+	</div>
+
+</div>
+
+<script src="landing page.js"></script> 
+</body>
+
+<footer>
+	<p>Designed by Khaled Elhossiny, Mohamed Nashaat, Mina Magdy	Copyright ©2018 all rights reserved 	Contact information: <a href="mailto:someone@example.com">someone@example.com</a></p>
+</footer>
+</html>
