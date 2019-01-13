@@ -83,8 +83,8 @@ else if(isset($_POST['check']))
 	  }
 	  public function select_img_path()
 	{
-		$modelObject=new viewModel();
-		return $modelObject->select_img_path();
+		$ModelObject = new ProductModel();
+		return $ModelObject->select_img_path();
 	}
 	public function delete_search($name)  //display items to delete them
 	{
