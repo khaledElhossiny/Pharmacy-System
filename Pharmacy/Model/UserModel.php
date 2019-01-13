@@ -281,6 +281,30 @@ class UserModel{
         return $row['Usertype_ID'];
     }
 
+    public function Search(){
+        $sql = "SELECT * FROM user WHERE Username LIKE '%".$this->Username."%' OR Email Like '%".$this->Username."%'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Results = $Connection->Execute($sql);
+        if ($Results->num_rows>0){
+            $Objects = array();
+            $x = 0;
+            while ($row = mysqli_fetch_array($Results)){
+                $Objects[$x] = new UserModel();
+                $Objects[$x]->setFirstname($row['Firstname']);
+                $Objects[$x]->setLastname($row['Lastname']);
+                $Objects[$x]->setAddress($row['Address']);
+                $Objects[$x]->setUsername($row['Username']);
+                $Objects[$x]->setEmail($row['Email']);
+                $x++;
+            }
+            return $Objects;
+        }
+        else{
+            return 0;
+        }
+    }
+
 }
 
 ?>

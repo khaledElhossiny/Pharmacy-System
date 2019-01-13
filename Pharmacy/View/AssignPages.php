@@ -15,7 +15,6 @@ $Pages = $PagesController->SelectAll();
         <link rel="stylesheet" type="text/css" href="../Public/CSS/Menu.css"></head>
         <script>
             var error1 = false;
-            var error2 = false;
             $(document).ready(function () {
                $("#usertype").change(function () {
                    var UserTypeValue = document.getElementById("usertype").value;
@@ -46,18 +45,18 @@ $Pages = $PagesController->SelectAll();
                       success : function (Response) {
                           if (Response == 0){
                               document.getElementById("Error").style.visibility = "hidden";
-                              error2 = false;
+                              error1 = false;
                           }
                           else{
                               document.getElementById("Error").style.visibility = "visible";
-                              error2 = true;
+                              error1 = true;
                           }
                       }
                   });
                });
             });
                 function Check() {
-                    if (error1 || error2){
+                    if (error1){
                         alert("Please Fix the Problems");
                         event.preventDefault();
                     }

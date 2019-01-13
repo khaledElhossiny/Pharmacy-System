@@ -26,9 +26,9 @@ if (!empty($_SESSION['ID'])){
         echo "<li><a href=".$Pages[$x]->getURL().">".$Pages[$x]->getFriendlyName()."</a></li>";
     }
     echo "  <li><a href='ViewProfile.php'>Hello ".$Username."</a> ";
+    echo "<li><a href='../Controller/UserController.php?request=logout'>Logout</a>";
 }
 else{
-    echo $_SESSION['ID'];
 }
 ?>
         </ul>

@@ -1,6 +1,6 @@
 <?php
-			require_once("../Controller/viewController.php");
-			$viewControllerObject=new viewController();
+			require_once("../Controller/ProductController.php");
+			$viewControllerObject=new ProductController();
 			$result=$viewControllerObject->select_img_path();
 			while($row=mysqli_fetch_array($result))
 			{

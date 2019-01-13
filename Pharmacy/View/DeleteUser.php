@@ -29,9 +29,7 @@ $UserArray = $UserController->SelectUsers();
 ?>
 <html>
 <head>
-    <style>
-
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         function Confirmation() {
             var value = confirm("Do you really want to delete this user");
@@ -42,6 +40,38 @@ $UserArray = $UserController->SelectUsers();
                 event.preventDefault();
             }
         }
+        
+        function search(){
+            var Value = document.getElementById("search").value;
+            if (Value == ""){
+                
+            }
+            else{
+                $.ajax({
+                    type : "post",
+                    url : "../Controller/UserController.php",
+                    data : {requestType : "search" , value : Value},
+                    success : function (data) {
+
+                       if (data == 0){
+                           var rowCount = document.getElementById('users').rows.length;
+                           for (var x=1; x<rowCount;x++){
+                               document.getElementById("users").deleteRow(x);
+
+                           }
+                           var table = document.getElementById("users");
+                           var Row = table.insertRow(1);
+                           Row.innerHTML = "Sorry No Results Found";
+                           Row.style.color = "white";
+                       }
+                       else{
+                           var Data = JSON.parse(data);
+                       }
+
+                    }
+                });
+            }
+        }
     </script>
     <link rel="stylesheet" type="text/css" href="../Public/CSS/Menu.css"></head>
 
@@ -50,10 +80,11 @@ $UserArray = $UserController->SelectUsers();
 <br>
 <div style="text-align: center">
     <fieldset>
+        <input type="text" name = "search" id = "search" onkeyup="search()">
         <label><h1>User Panel</h1></label>
 
         <div style="text-align: center">
-            <table>
+            <table id = "users">
                 <tr>
                     <th>Firstname</th>
                     <th>Lastname</th>

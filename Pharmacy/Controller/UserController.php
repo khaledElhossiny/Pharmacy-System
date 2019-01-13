@@ -49,6 +49,12 @@ elseif (isset($_POST['ModifyMail'])){
 elseif (isset($_POST['ModifyPassword'])){
     UserController::ModifyPassword();
 }
+if (isset($_POST['requestType'])){
+    if ($_POST['requestType'] == "search"){
+
+        UserController::Search();
+    }
+}
 //TODO Delete the  User on Failing to add Phone Number
 //TODO Logout Button on the Menu
 //TODO Get Username Function for the Menu
@@ -288,6 +294,27 @@ class UserController{
         $UserModel = new UserModel();
         $UserModel->setID($ID);
         return $UserModel->GetUserType();
+    }
+
+    public function Search(){
+        $Value = $_POST['value'];
+        $UserModel = new UserModel();
+        $UserModel->setUsername($Value);
+        $Results = $UserModel->Search();
+        if ($Results == 0){
+            echo json_encode(0);
+        }
+        else{
+            for ($x=0;$x<sizeof($Results);$x++){
+                echo json_encode(array(
+                    "Firstname"=>$Results[$x]->getFirstname(),
+                    "Lastname"=>$Results[$x]->getLastname(),
+                    "Username"=>$Results[$x]->getUsername(),
+                    "Email"=>$Results[$x]->getEmail(),
+                    "Address"=>$Results[$x]->getAddress()
+                ));
+            }
+        }
     }
 }
 ?>

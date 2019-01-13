@@ -23,8 +23,7 @@ else{
     exit;
 }
 
-$PagesController = new PageController();
-$Result = $PagesController->SelectAll();
+
 ?>
 <html>
 <head>

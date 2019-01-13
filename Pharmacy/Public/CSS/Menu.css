@@ -61,7 +61,7 @@ input{
 
 }
 fieldset{
-    display: inline-block;
+    display: inline;
     border-style: hidden;
     background-color: rgba(0,0,0,0.8);
     color: antiquewhite;
@@ -76,7 +76,7 @@ input[type=radio]{
 }
 button{
     height: 50px;
-    width: 250px;
+    width: 150px;
     height: 30px;
     color: antiquewhite;
     font-family: "Bradley Hand ITC";
@@ -116,3 +116,42 @@ select, option{
     border-color: rgba(135,206,235,0.2);
     display: inline-block;
 }
+textarea{
+    width: 250px;
+    height: 100px;
+    color: antiquewhite;
+    font-family: "Bradley Hand ITC";
+    font-size: medium;
+    background-color: rgba(0,0,0,0.8);
+    border-width: 3px;
+    border-color: rgba(135,206,235,0.2);
+}
+.product_container
+{
+    margin-left:20%;
+    margin-top:3%;
+    /*background-color:black;*/
+    width:50%;
+    height:fit-content;
+    display:grid;
+    grid-gap:10px;
+    grid-template-columns:auto auto auto auto;
+}
+
+.prod
+{
+    max-width:100%;
+    max-height:fit-content;
+    display:inline;
+
+    /*border:5px solid red;
+    border-radius:15px;*/
+}
+
+.prod img
+{
+    border-radius:5px;
+    /*with respect to the button dimensions*/
+}
+
+

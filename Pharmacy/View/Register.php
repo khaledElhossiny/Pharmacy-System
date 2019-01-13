@@ -21,7 +21,7 @@ require_once ("NavBar.php");
                     type : "POST",
                     url : "../Controller/UserController.php",
                     data : {requestType : "Username" , Username : value},
-                    success : function (Response) {
+                    success : function (eq) {
                         if (Response == 0){
                             document.getElementById("Message").innerHTML = "Available To Use";
                             document.getElementById("Message").style.color = "green";

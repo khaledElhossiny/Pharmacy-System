@@ -1,5 +1,5 @@
 <?php
-require_once("../Public/Database/DBConnect.php");
+require_once("../Public/Database/DatabaseConnection.php");
 class ProductModel
 { 
   private $ID;
@@ -75,52 +75,52 @@ class ProductModel
       $sql="INSERT INTO `product`(`Category_ID`, `Name`, `Amount`, `Price`, `Description`, `Img_Path`)
 				VALUES ('".$this->Category."','".$this->Name."','".$this->Amount."','".$this->Price."','".$this->Description."','".$this->img_path."')";
 	  echo $sql;
-       $DatabaseObject = new DBConnect();
-       $DatabaseObject->connect();
-       $DatabaseObject->execute($sql);
+       $DatabaseObject = new DatabaseConnection();
+       $DatabaseObject->Connect();
+       $DatabaseObject->Execute($sql);
   }
   public function Insert_Category(){
       //$sql = "INSERT INTO `product`(`Name`, `Price`, `Amount`) VALUES ('".$this->Name."' , '".$this->Price."' , '".$this->Amount."')";
       $sql="INSERT INTO `category`(`Category_Name`) VALUES ('".$this->Category."')";
 	  echo $sql;
-       $DatabaseObject = new DBConnect();
-       $DatabaseObject->connect();
-       $DatabaseObject->execute($sql);
+       $DatabaseObject = new DatabaseConnection();
+       $DatabaseObject->Connect();
+       $DatabaseObject->Execute($sql);
   }
   public function Select()
   {
 	  $sql="SELECT * FROM `product` WHERE Name like '%".$this->Name."%' ";
-	  $DatabaseObject= new DBConnect();
-	  $DatabaseObject->connect();
-	  $result=$DatabaseObject->execute($sql);
+	  $DatabaseObject= new DatabaseConnection();
+	  $DatabaseObject->Connect();
+	  $result=$DatabaseObject->Execute($sql);
 	  return $result;
   }
   public function Select_categories()
   {
 	  $sql="SELECT * FROM `category`";
-	  $DatabaseObject= new DBConnect();
-	  $DatabaseObject->connect();
-	  $result=$DatabaseObject->execute($sql);
+	  $DatabaseObject= new DatabaseConnection();
+	  $DatabaseObject->Connect();
+	  $result=$DatabaseObject->Execute($sql);
 	  /*while($row=$result)
 	  {
 		  echo "".$row['Category_ID']."";
 	  }*/
 	  return $result;
   }
-    public function Select_ID()
-    {
+  public function Select_ID()
+  {
         $sql="SELECT * FROM `product` WHERE ID = '".$this->ID."' ";
-        $DatabaseObject= new DBConnect();
-        $DatabaseObject->connect();
-        $result=$DatabaseObject->execute($sql);
+        $DatabaseObject= new DatabaseConnection();
+        $DatabaseObject->Connect();
+        $result=$DatabaseObject->Execute($sql);
         return $result;
-    }
+  }
   public function delete_product()
   {
 	  $sql="DELETE FROM `product` WHERE ID= '".$this->ID."' ";
-	  $DatabaseObject= new DBConnect();
-	  $DatabaseObject->connect();
-	  return $DatabaseObject->execute($sql);
+	  $DatabaseObject= new DatabaseConnection();
+	  $DatabaseObject->Connect();
+	  return $DatabaseObject->Execute($sql);
   }
   public function edit_product()
   {
@@ -130,25 +130,51 @@ class ProductModel
 	  $sql="UPDATE `product` SET`Name`='".$this->Name."',`Price`='".$this->Price."',`Amount`='".$this->Amount."'
 	   ,`Description`='".$this->Description."', `Img_Path`='".$this->img_path."' WHERE ID='".$this->ID."' ";
 	  echo $sql;
-	  $DatabaseObject= new DBConnect();
-	  $DatabaseObject->connect();
-	  $DatabaseObject->execute($sql);
+	  $DatabaseObject= new DatabaseConnection();
+	  $DatabaseObject->Connect();
+	  $DatabaseObject->Execute($sql);
   }
   public function check($str,$table)
   {
       $sql="SELECT * FROM `$table` WHERE Name='$str'";
-      $DatabaseObject= new DBConnect();
-      $DatabaseObject->connect();
-      $result=$DatabaseObject->execute($sql);
+      $DatabaseObject= new DatabaseConnection();
+      $DatabaseObject->Connect();
+      $result=$DatabaseObject->Execute($sql);
       return $result;
   }
-    public function select_img_path()
-    {
-        $sql="select Img_Path from product";
-        $DatabaseObject= new DBConnect();
-        $DatabaseObject->connect();
-        $result=$DatabaseObject->execute($sql);
-        return $result;
-    }
+  public function select_img_path()
+  {
+	  $sql="select Img_Path from product";
+	  $DatabaseObject= new DatabaseConnection();
+	  $DatabaseObject->Connect();
+	  $result=$DatabaseObject->Execute($sql);
+	  return $result;
+  }
+  public function SelectAll(){
+      $sql = "SELECT * FROM `product`";
+      $Connection = new DatabaseConnection();
+      $Connection->Connect();
+      $Results = $Connection->Execute($sql);
+      $Objects = array();
+      $x = 0;
+      while ($row = mysqli_fetch_array($Results)){
+          $Objects[$x] = new ProductModel();
+          $Objects[$x]->set_product_id($row['ID']);
+          $Objects[$x]->set_product_name($row['Name']);
+          $Objects[$x]->set_product_price($row['Price']);
+          $Objects[$x]->set_product_img_path($row['Img_Path']);
+          $x++;
+      }
+      return $Objects;
+
+  }
+  public function SelectPrice(){
+      $sql = "SELECT Price FROM product WHERE ID = '".$this->ID."'";
+      $Connection = new DatabaseConnection();
+      $Connection->Connect();
+      $Result = $Connection->Execute($sql);
+      $row = mysqli_fetch_array($Result);
+      return $row['Price'];
+  }
 }
 ?>
