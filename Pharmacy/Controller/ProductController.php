@@ -82,10 +82,10 @@ else if(isset($_POST['check']))
 		  return $ModelObject->Select_ID();
 	  }
 	  public function select_img_path()
-	{
-		$ModelObject = new ProductModel();
-		return $ModelObject->select_img_path();
-	}
+	  {
+		  $ModelObject = new ProductModel();
+		  return $ModelObject->select_img_path();
+	  }
 	public function delete_search($name)  //display items to delete them
 	{
 		//echo $name;
