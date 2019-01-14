@@ -61,6 +61,29 @@ class Cart_ItemsModel{
         $Connection->Connect();
         $Connection->Execute($sql);
     }
+    public function SelectByCartID(){
+        $sql = "SELECT * FROM `cart_items` WHERE Cart_ID = '".$this->Cart_ID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Result = $Connection->Execute($sql);
+        if ($Result->num_rows>0){
+            $Objects = array();
+            $x=0;
+            while ($row = mysqli_fetch_array($Result)){
+                $Objects[$x] = new self();
+                $Objects[$x]->setID($row['ID']);
+                $Objects[$x]->setCartID($row['Cart_ID']);
+                $Objects[$x]->setProductID($row['Product_ID']);
+                $Objects[$x]->setQuantity($row['Quantity']);
+                $Objects[$x]->setTotalPrice($row['TotalPrice']);
+                $x++;
+            }
+            return $Objects;
+        }
+        else{
+            return 0;
+        }
+    }
 
 
 }

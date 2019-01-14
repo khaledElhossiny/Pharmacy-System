@@ -4,6 +4,8 @@ if (isset($_POST['Add_Product']) && !empty($_POST['name']))
 {
     $ProductControllerObject = new ProductController();
     $ProductControllerObject->Add_Product();
+    header("Location:../View/Add_Product.php");
+    exit;
 
 }
 else if (isset($_POST['Add_Category']))
@@ -156,6 +158,11 @@ class ProductController
         $ProductsModel = new ProductModel();
         $Results = $ProductsModel->SelectAll();
         return $Results;
+    }
+    public function SelectName($ID){
+        $ProductModel = new ProductModel();
+        $ProductModel->set_product_id($ID);
+        return $ProductModel->SelectProductName();
     }
 }
 ?>

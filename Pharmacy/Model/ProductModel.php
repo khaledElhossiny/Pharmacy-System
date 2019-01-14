@@ -175,5 +175,13 @@ class ProductModel
       $row = mysqli_fetch_array($Result);
       return $row['Price'];
   }
+  public function SelectProductName(){
+      $sql = "SELECT `Name`FROM `product` WHERE ID = '".$this->ID."'";
+      $Connection = new DatabaseConnection();
+      $Connection->Connect();
+      $Result= $Connection->Execute($sql);
+      $row = mysqli_fetch_array($Result);
+      return $row['Name'];
+  }
 }
 ?>

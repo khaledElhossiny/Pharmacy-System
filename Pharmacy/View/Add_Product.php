@@ -13,7 +13,7 @@
                         <label >Name:</label> <input type = "text" name = 'name' class="add_product_form_inputs"
                                                                                     onkeyup="text_validations(this.value); entry_exists_in_DB(this.value,'product');" required>
                         <label id="check_label"></label>
-                        <br><label>Price:</label> <input type = "number" step="0.1" name = "price" class="add_product_form_inputs" required> <br>
+                        <br><label>Price:</label> <input type = "number" name = "price"  required> <br>
                         <label >Amount:</label> <input type = "number" name = "amount" class="add_product_form_inputs" required> <br>
                         <label >Category:</label>
                         <select name="category">

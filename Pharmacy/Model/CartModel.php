@@ -101,6 +101,31 @@ class CartModel{
         $Connection->Connect();
         $Connection->Execute($sql);
     }
-
+    public function CalculateTotal(){
+        if (session_id() == ""){
+            session_start();
+        }
+        $ID = $_SESSION['ID'];
+        $Model = new self();
+        $Model->setUserID($ID);
+        $CartID = $Model->SelectCart();
+        $sql = "SELECT `TotalPrice` FROM `cart_items` WHERE Cart_ID = '".$CartID."'";
+        $Connection = new DatabaseConnection();
+        $Connection->Connect();
+        $Result = $Connection->Execute($sql);
+        echo $Result->num_rows;
+        if ($Result->num_rows>0){
+            $TotalPrice = 0;
+            while ($row = mysqli_fetch_array($Result)){
+                $TotalPrice = $TotalPrice+$row['TotalPrice'];
+            }
+            $sql3 = "UPDATE `cart` SET `TotalPrice`='".$TotalPrice."' WHERE ID = '".$CartID."'";
+            $Connection->Execute($sql3);
+        }
+        else{
+            $sql2 = "UPDATE `cart` SET `TotalPrice`='0' WHERE ID = '".$CartID."'";
+            $Connection->Execute($sql2);
+        }
+    }
 }
 ?>
