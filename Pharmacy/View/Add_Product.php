@@ -9,7 +9,7 @@
             <div style="text-align: center">
                 <fieldset>
                     <label><h4>Add Product</h4></label>
-                    <form id="add_product_form" action = "../Controller/ProductController.php" method="post">
+                    <form id="add_product_form" action = "../Controller/ProductController.php" method="post" enctype='multipart/form-data'>
                         <label >Name:</label> <input type = "text" name = 'name' class="add_product_form_inputs"
                                                                                     onkeyup="text_validations(this.value); entry_exists_in_DB(this.value,'product');" required>
                         <label id="check_label"></label>
@@ -28,7 +28,7 @@
                             ?>
                         </select> <br>
                         <label for="description">Description:</label> <textarea name="description" id = "description"></textarea> <br>
-                        <label >Select image source:</label> <input type="file" accept=".jpg, .png, .jpeg" name="img_path"> <br>
+                        <label >Select image source:</label> <input type="file" accept=".jpg, .png, .jpeg" name="myfile"> <br>
                         <input type = "submit" name = "Add_Product" id="Submit" value = "Add Product" class="add_product_form_inputs">
                     </form>
                 </fieldset>

@@ -4,13 +4,13 @@ if (isset($_POST['Add_Product']) && !empty($_POST['name']))
 {
     $ProductControllerObject = new ProductController();
     $ProductControllerObject->Add_Product();
-    header("Location: " . "http://" . $_SERVER['HTTP_HOST'] . "/MVC/View/Add_Product.php"); //returns to the source page
+
 }
 else if (isset($_POST['Add_Category']))
 {
     $ProductControllerObject = new ProductController();
     $ProductControllerObject->Add_Category();
-    header("Location: " . "http://" . $_SERVER['HTTP_HOST'] . "/MVC/View/Add_Category.php"); //returns to the source page
+    header("Location:../View/Add_Category.php");
 }
 else if(isset($_POST['Search']))
 {
@@ -22,13 +22,14 @@ else if(isset($_POST['delete']) && !empty($_POST['checkbox']))
     $del_id=$_POST['checkbox'];
     $ProductControllerObject = new ProductController();
     $ProductControllerObject->Del($del_id);
-    header("Location: " . "http://" . $_SERVER['HTTP_HOST'] . "/MVC/View/Delete_Product - Copy.php");//returns to the source page
+    header("Location:../View/Delete_Product.php");
+    exit;
 }
 else if(isset($_POST['Edit_Product']) && !empty($_POST['name']))
 {
     $ProductControllerObject = new ProductController();
     $ProductControllerObject->edit($_POST['id'],$_POST['name'],$_POST['price'],$_POST['amount'],$_POST['description'],$_POST['img']);
-    header("Location: " . "http://" . $_SERVER['HTTP_HOST'] . "/MVC/View/editProduct.php");//returns to the source page
+    header("Location:../View/EditProduct.php");
 }
 else if(isset($_POST['check']))
 {
@@ -43,16 +44,40 @@ class ProductController
         $Price = $_POST['price'];
         $Amount=$_POST['amount'];
         $Description=$_POST['description'];
-        $Catgeory=$_POST['category'];
-        $Img_path=$_POST['img_path'];
+        //$Catgeory=$_POST['category'];
+    //*******************************File Upload******************************************************//
+
+        $errors= array();
+      $file_name = $_FILES['myfile']['name'];
+      $file_size = $_FILES['myfile']['size'];
+      $file_tmp = $_FILES['myfile']['tmp_name'];
+      $file_type = $_FILES['myfile']['type'];
+      $tmp = explode('.',$_FILES['myfile']['name']);
+      $file_ext = end($tmp);
+
+      $expensions= array("jpeg","jpg","png");
+      $file_name = rand().".png";
+
+      if($file_size > 2097152) {
+         $errors[]='File size must be excately 2 MB';
+      }
+
+      if(empty($errors)==true) {
+         move_uploaded_file($file_tmp,"../Public/ProductImages/".$file_name);
+         echo "Success";
+      }else{
+         print_r($errors);
+      }
+
+   //*******************************
 
         $ModelObject = new ProductModel();
         $ModelObject->set_product_name($Name);
         $ModelObject->set_product_price($Price);
         $ModelObject->set_product_amount($Amount);
         $ModelObject->set_product_description($Description);
-        $ModelObject->set_product_category($Catgeory);
-        $ModelObject->set_product_img_path($Img_path);
+        //$ModelObject->set_product_category($Catgeory);
+        $ModelObject->set_product_img_path($file_name);
         $ModelObject->Insert_Product();
     }
     public function Add_Category()

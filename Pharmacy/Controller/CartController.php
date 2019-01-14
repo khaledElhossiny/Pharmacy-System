@@ -9,6 +9,11 @@ if (isset($_GET['ID'])){
 }
 class CartController{
     public function AddItem(){
+        if (empty($_SESSION['ID'])){
+            header("Location:../View/Login.php");
+            exit;
+
+        }
         $CartModel = new CartModel();
         $CartModel->setUserID($_SESSION['ID']);
         $Result = $CartModel->SelectCart();

@@ -17,7 +17,7 @@ require_once ("NavBar.php");
             for ($x=0;$x<sizeof($Results);$x++){
                 echo "<fieldset>
                         <div class = 'prod'>
-                        <img src = 'Capture.PNG' width='150px' height='150px'>
+                        <img src = ../Public/ProductImages/".$Results[$x]->get_product_imge_path()." width='150px' height='150px'>
                         <h5>".$Results[$x]->get_product_name()."</h5>
                         <h5>".$Results[$x]->get_product_price()."</h5>
                         <a href='../Controller/CartController.php?ID= ".$Results[$x]->get_product_id()."'> <button>Add To Cart </button></a>

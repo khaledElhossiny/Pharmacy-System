@@ -74,7 +74,6 @@ class ProductModel
       //$sql = "INSERT INTO `product`(`Name`, `Price`, `Amount`) VALUES ('".$this->Name."' , '".$this->Price."' , '".$this->Amount."')";
       $sql="INSERT INTO `product`(`Category_ID`, `Name`, `Amount`, `Price`, `Description`, `Img_Path`)
 				VALUES ('".$this->Category."','".$this->Name."','".$this->Amount."','".$this->Price."','".$this->Description."','".$this->img_path."')";
-	  echo $sql;
        $DatabaseObject = new DatabaseConnection();
        $DatabaseObject->Connect();
        $DatabaseObject->Execute($sql);
